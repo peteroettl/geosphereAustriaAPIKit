@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct StationMetadata: Codable {
+public struct StationMetadata: Codable, Identifiable {
     /// Example: "INDIVIDUAL"
     public var type: StationMetadataType
     /// Example: 5904

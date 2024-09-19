@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct StationMetadataDto: Codable {
+public struct StationMetadataDto: Codable, Identifiable {
     /// StationMetadataType
     ///
     /// An enumeration.

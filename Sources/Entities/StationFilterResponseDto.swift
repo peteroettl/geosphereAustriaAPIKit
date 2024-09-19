@@ -6,9 +6,9 @@ import Foundation
 public struct StationFilterResponseDto: Codable {
     public var numStationsTotal: Int
     public var numStationsMatching: Int
-    public var matchingStations: [StationMetadataDto]
+    public var matchingStations: [WeatherStation]
 
-    public init(numStationsTotal: Int, numStationsMatching: Int, matchingStations: [StationMetadataDto]) {
+    public init(numStationsTotal: Int, numStationsMatching: Int, matchingStations: [WeatherStation]) {
         self.numStationsTotal = numStationsTotal
         self.numStationsMatching = numStationsMatching
         self.matchingStations = matchingStations
@@ -18,7 +18,7 @@ public struct StationFilterResponseDto: Codable {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.numStationsTotal = try values.decode(Int.self, forKey: "num_stations_total")
         self.numStationsMatching = try values.decode(Int.self, forKey: "num_stations_matching")
-        self.matchingStations = try values.decode([StationMetadataDto].self, forKey: "matching_stations")
+        self.matchingStations = try values.decode([WeatherStation].self, forKey: "matching_stations")
     }
 
     public func encode(to encoder: Encoder) throws {

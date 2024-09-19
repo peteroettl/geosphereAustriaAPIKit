@@ -3,7 +3,8 @@
 
 import Foundation
 
-public struct StationMetadataDto: Codable, Identifiable {
+/// StationMetadataDto
+public struct WeatherStation: Codable, Identifiable {
     /// StationMetadataType
     ///
     /// An enumeration.
@@ -23,11 +24,11 @@ public struct StationMetadataDto: Codable, Identifiable {
     public var hasGlobalRadiation: Bool?
     public var isActive: Bool?
     /// List of sub-stations of this station. Only populated if type == COMBINED.
-    public var subStations: [StationMetadataDto]?
+    public var subStations: [WeatherStation]?
     /// Matches
     public var isMatches: Bool
 
-    public init(type: StationMetadataType, id: String, name: String, state: Bundesland? = nil, lat: Double, lon: Double, altitude: Double? = nil, validFrom: Date, validTo: Date, hasSunshine: Bool? = nil, hasGlobalRadiation: Bool? = nil, isActive: Bool? = nil, subStations: [StationMetadataDto]? = nil, isMatches: Bool? = nil) {
+    public init(type: StationMetadataType, id: String, name: String, state: Bundesland? = nil, lat: Double, lon: Double, altitude: Double? = nil, validFrom: Date, validTo: Date, hasSunshine: Bool? = nil, hasGlobalRadiation: Bool? = nil, isActive: Bool? = nil, subStations: [WeatherStation]? = nil, isMatches: Bool? = nil) {
         self.type = type
         self.id = id
         self.name = name
@@ -58,7 +59,7 @@ public struct StationMetadataDto: Codable, Identifiable {
         self.hasSunshine = try values.decodeIfPresent(Bool.self, forKey: "has_sunshine")
         self.hasGlobalRadiation = try values.decodeIfPresent(Bool.self, forKey: "has_global_radiation")
         self.isActive = try values.decodeIfPresent(Bool.self, forKey: "is_active")
-        self.subStations = try values.decodeIfPresent([StationMetadataDto].self, forKey: "sub_stations")
+        self.subStations = try values.decodeIfPresent([WeatherStation].self, forKey: "sub_stations")
         self.isMatches = try values.decodeIfPresent(Bool.self, forKey: "matches") ?? true
     }
 

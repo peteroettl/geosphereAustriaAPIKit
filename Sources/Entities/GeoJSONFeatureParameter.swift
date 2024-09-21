@@ -14,7 +14,8 @@ public struct GeoJSONFeatureParameter: Codable {
     ///   9,
     ///   0
     /// ]
-    public var data: [Double]
+    //public var data: [Double]
+    public var data: [Double?] // Allow null values with `Optional`
 
     public init(name: String, unit: String, data: [Double]) {
         self.name = name
@@ -26,7 +27,8 @@ public struct GeoJSONFeatureParameter: Codable {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.name = try values.decode(String.self, forKey: "name")
         self.unit = try values.decode(String.self, forKey: "unit")
-        self.data = try values.decode([Double].self, forKey: "data")
+        //self.data = try values.decode([Double].self, forKey: "data")
+        self.data = try values.decodeIfPresent([Double?].self, forKey: "data") ?? []
     }
 
     public func encode(to encoder: Encoder) throws {
